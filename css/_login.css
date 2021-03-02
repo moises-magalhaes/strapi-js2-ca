@@ -1,0 +1,15 @@
+form {
+  background-color: rgb(132, 161, 194, 0.2);
+  padding: 20px 50px;
+  margin-bottom: 20px;
+}
+
+.btn-primary {
+  background-color: var(--primary-colour) !important;
+  border: none !important;
+  color: black !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--secundary-colour) !important;
+}

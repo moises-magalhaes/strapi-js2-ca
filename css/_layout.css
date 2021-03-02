@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+footer .text-center {
+  display: flex;
+  flex-shrink: 0;
+}
+
+footer .text-center .text-white {
+  margin-right: auto;
+}
+
+footer .text-center .text-white:first-child {
+  margin-left: auto;
+}
+
+.wrapper {
+  flex: 1 0 auto;
+}

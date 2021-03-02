@@ -1,0 +1,6 @@
+.product-container .article {
+  flex-direction: column;
+  background-color: var(--gray-dark);
+  margin: 10px;
+  padding: 10px 30px;
+}
