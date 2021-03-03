@@ -11,9 +11,9 @@ createFooter();
 
 (async function () {
   const container = document.querySelector(".product-container");
+  const favorites = getExistingFavs();
 
   //---------------------------------------------------//
-
   let addFavorites = document.getElementsByClassName("far");
 
   try {

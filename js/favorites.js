@@ -14,8 +14,9 @@ const container = document.querySelector(".product-container");
 favorites.forEach((article) => {
   container.innerHTML += `<div class= "article">
   <h4>${article.name}</h4>
-    Remove from Favorites: 
-    <i class="far fa-bookmark" 
+  <span class="add-fav favorite">
+      Remove from Favorites: 
+    <i class="fas fa-bookmark" 
     data-id="${article.id}"
     data-name="${article.name}">
     </i>
