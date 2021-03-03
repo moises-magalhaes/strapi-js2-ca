@@ -2,6 +2,7 @@ import { baseUrl } from "./settings/api.js";
 import displayMessage from "./components/common/displayMessage.js";
 import createMenu from "./components/common/createMenu.js";
 import createFooter from "./components/common/createFooter.js";
+import { getExistingFavs } from "./utils/favFunctions.js";
 
 const articlesUrl = baseUrl + "articles";
 
@@ -14,7 +15,6 @@ createFooter();
   //---------------------------------------------------//
 
   let addFavorites = document.getElementsByClassName("far");
-  console.log(addFavorites); //
 
   try {
     const response = await fetch(articlesUrl);
@@ -47,17 +47,44 @@ createFooter();
         const id = this.dataset.id;
         const name = this.dataset.name;
 
-        console.log("id", id);
-        console.log("name", name);
+        const currentFavs = getExistingFavs();
+
+        const articleExists = currentFavs.find(function (fav) {
+          return fav.id === id;
+        });
+        if (!articleExists) {
+          console.log("articleExists", articleExists);
+
+          const article = { id: id, name: name };
+
+          currentFavs.push(article);
+
+          saveFavs(currentFavs);
+        } else {
+          const newFavs = currentFavs.filter((fav) => fav.id !== id);
+          saveFavs(newFavs);
+        }
       });
     }
 
-    function getExistingFavs() {}
+    //----------------adding to local Storage-------------------------//
+
+    getExistingFavs();
+    /*function getExistingFavs() {
+      const favs = localStorage.getItem("favorites");
+      console.log(favs);
+      if (!favs) {
+        return [];
+      } else {
+        return JSON.parse(favs);
+      }
+    }*/
+    //----------------adding to local Storage-------------------------//
+    function saveFavs(favs) {
+      localStorage.setItem("favorites", JSON.stringify(favs));
+    }
   } catch (error) {
     console.log(error);
     displayMessage("error", error, ".product-container");
   }
 })();
-
-//---------------------trying to edit  button ------------------//
-//--------------------- in the same page -------------------//
