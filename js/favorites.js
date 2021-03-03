@@ -1,5 +1,6 @@
-/*import displayMessage from "./components/common/displayMessage.js";
+import displayMessage from "./components/common/displayMessage.js";
 import { baseUrl } from "./settings/api.js";
+import { getExistingFavs } from "./utils/favFunctions.js";
 import { saveToken, saveUser } from "./utils/storage.js";
 import createMenu from "./components/common/createMenu.js";
 import createFooter from "./components/common/createFooter.js";
@@ -7,25 +8,17 @@ import createFooter from "./components/common/createFooter.js";
 createMenu();
 createFooter();
 
-let addFavorites = document.getElementsByClassName("add-fav");
-console.log(addFavorites);
+const favorites = getExistingFavs();
+const container = document.querySelector(".product-container");
 
-addFavorites.forEach((button) => {
-  button.addEventListener("click", handleClick);
+favorites.forEach((article) => {
+  container.innerHTML += `<div class= "article">
+  <h4>${article.name}</h4>
+    Remove from Favorites: 
+    <i class="far fa-bookmark" 
+    data-id="${article.id}"
+    data-name="${article.name}">
+    </i>
+  </span>
+  </div>`;
 });
-
-function handleClick(event) {
-  console.log(event);
-  //this = event.target
-  event.target.classlist.toggle("fa");
-  event.target.classlist.toggle("far");
-}
-
-
-//const AddFavorites = document.querySelectorAll()
-/*
-for (let i = 0; i < favorites.length; i++) {
-  favorites[i].addEventListener("click", () => {
-    console.log("added to favorites");
-  });
-}*/

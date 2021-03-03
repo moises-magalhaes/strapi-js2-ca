@@ -70,15 +70,7 @@ createFooter();
     //----------------adding to local Storage-------------------------//
 
     getExistingFavs();
-    /*function getExistingFavs() {
-      const favs = localStorage.getItem("favorites");
-      console.log(favs);
-      if (!favs) {
-        return [];
-      } else {
-        return JSON.parse(favs);
-      }
-    }*/
+
     //----------------adding to local Storage-------------------------//
     function saveFavs(favs) {
       localStorage.setItem("favorites", JSON.stringify(favs));
