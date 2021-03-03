@@ -1,0 +1,15 @@
+.add-fav {
+  border: 2px solid var(--white);
+  padding: 7px;
+  background-color: var(--white);
+}
+
+.far {
+  font-size: 1.5rem;
+  color: var(--secundary-colour);
+}
+
+.fas {
+  font-size: 1.5rem;
+  color: var(--primary-colour);
+}
