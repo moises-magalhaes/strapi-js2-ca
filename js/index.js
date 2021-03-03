@@ -14,7 +14,7 @@ createFooter();
   const favorites = getExistingFavs();
 
   //---------------------------------------------------//
-  let addFavorites = document.getElementsByClassName("far");
+  // let favoritesButton = document.getElementsByClassName("far");
 
   try {
     const response = await fetch(articlesUrl);
@@ -23,24 +23,35 @@ createFooter();
     container.innerHTML = "";
 
     json.forEach(function (article) {
+      let changeCSS = "far";
+
+      const doesArticleExist = favorites.find(function (fav) {
+        return parseInt(fav.id) === article.id;
+      });
+
+
+      if (doesArticleExist) {
+        changeCSS = "fas";
+      }
+
       container.innerHTML += `<div class="article" href="/">
         <h4> ${article.title}</h4>
         <p> ${article.summary}</p>
         <p>${article.author}</p>
         <span class="add-fav favorite">
           add to Favorites: 
-          <i class="far fa-bookmark" data-id="${article.id}" data-name="${article.title}">
+          <i class="${changeCSS} fa-bookmark" data-id="${article.id}" data-name="${article.title}">
           </i>
         </span>    
       </div>`;
     });
 
-    for (let i = 0; i < addFavorites.length; i++) {
-      const btn = addFavorites[i];
+    let favoritesButton = document.getElementsByClassName("far");
+
+    for (let i = 0; i < favoritesButton.length; i++) {
+      const btn = favoritesButton[i];
 
       btn.addEventListener("click", function (event) {
-        console.log("clicked");
-        console.log(event);
         event.target.classList.toggle("far");
         event.target.classList.toggle("fas");
 
@@ -53,8 +64,6 @@ createFooter();
           return fav.id === id;
         });
         if (!articleExists) {
-          console.log("articleExists", articleExists);
-
           const article = { id: id, name: name };
 
           currentFavs.push(article);

@@ -14,9 +14,6 @@ export default function createMenu() {
     authLink = `<span class="nav-item login">Hi ${username}</span>`;
   }
 
-  //console.log(username);
-  console.log(pathname);
-
   navbar.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 								<a class="navbar-brand" href="/">My Website</a>
