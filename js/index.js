@@ -29,7 +29,6 @@ createFooter();
         return parseInt(fav.id) === article.id;
       });
 
-
       if (doesArticleExist) {
         changeCSS = "fas";
       }
@@ -46,7 +45,7 @@ createFooter();
       </div>`;
     });
 
-    let favoritesButton = document.getElementsByClassName("far");
+    const favoritesButton = document.querySelectorAll(".add-fav i");
 
     for (let i = 0; i < favoritesButton.length; i++) {
       const btn = favoritesButton[i];
