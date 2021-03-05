@@ -6,7 +6,7 @@ export default function createMenu() {
   const { pathname } = document.location;
   const username = getUsername();
 
-  let authLink = `<li class="nav-item login"> <a href="login.html" class="${
+  let authLink = `<li class="nav-item login"><a href="login.html" class="${
     pathname === "/login.html" ? "active" : ""
   }">Login</a></li>`;
 
@@ -17,12 +17,9 @@ export default function createMenu() {
   navbar.innerHTML = `<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
 								<a class="navbar-brand" href="/">My Website</a>
-
-								
-
-  								
+													
 								  <ul class="navbar-nav mr-auto">
-										<li class="nav-item active">
+										<li class="nav-item">
 											<a href="index.html" class= "nav-link ${
                         pathname === "/" || "/index.html" ? "active" : ""
                       }">Home</a>
@@ -34,9 +31,7 @@ export default function createMenu() {
                         pathname === "/favorites.html" ? "active" : ""
                       }">Favorites</a>
                     </li>
-
 											${authLink}
-								  </ul>
-								
-                            </nav>`;
+								  </ul>							
+                 </nav>`;
 }

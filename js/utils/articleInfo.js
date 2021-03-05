@@ -1,12 +1,12 @@
 import { baseUrl } from "../settings/api.js";
 import displayMessage from "../components/common/displayMessage.js";
 import { getExistingFavs } from "./favFunctions.js";
-//import search from "../components/common/search.js";
 
 export default (async function articleInfo() {
   const articlesUrl = baseUrl + "articles";
 
   const container = document.querySelector(".product-container");
+  const search = document.querySelector("input.search");
 
   const favorites = getExistingFavs();
 
@@ -41,46 +41,20 @@ export default (async function articleInfo() {
       });
     }
 
-    renderArticles(json);
+    renderArticles();
 
     //---------------------search-----------------------------------//
 
-    function search(articles) {
-      const search = document.querySelector("input.search");
-
-      search.addEventListener("keyup", doFiltering);
-
-      function doFiltering(event) {
-        let value = $(this).val();
-        console.log(value);
-        let data = searchArticles(value, json);
-        renderArticles(data);
-      }
-
-      function searchArticles(value, data) {
-        const filteredData = [];
-
-        for (let i = 0; i < data.length; i++) {
-          value = value.toLowerCase();
-          var title = data[i].title.toLowerCase();
-          console.log(data[i]);
-
-          if (title.includes(value)) {
-            filteredData.push(data[i]);
-          }
-          return filteredData;
+    search.onkeyup = function (event) {
+      const searchValue = event.target.value.trim().toLowerCase();
+      const filteredArticles = json.filter(function (article) {
+        if (article.title.toLowerCase().includes(searchValue)) {
+          return true;
         }
-      }
-      /*  const searchValue = json.filter(function (article) {
-          if (article.title.toLowerCase().includes()) {
-            return true;
-          }
-        });*/
+      });
 
-      // renderArticles(searchValue);
-    }
-    search();
-
+      renderArticles(filteredArticles);
+    };
 
     //-------------------------search end-----------------------//
 
